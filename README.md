@@ -69,12 +69,24 @@ The model rewards numbers, examples, citations, and lexical variety, while penal
 
 **Where:**
 
-- `n̂` - normalised numeric and currency density  
-- `êx` - normalised example density  
-- `ĉi` - normalised citation density  
-- `t̂tr` - type–token ratio (lexical diversity proxy)  
-- `ĥ` - hedge density  
-- `b̂z` - buzzword density
+ **n̂ – normalised numeric and currency density**  
+  Captures the prevalence of quantitative expressions relative to total text length, indicating the degree of empirical or financial specificity. Higher values signal reliance on measurable evidence rather than qualitative description. Persistently low values are characteristic of narrative-heavy or impressionistic prose.
+
+- **êx – normalised example density**  
+  Measures the frequency of explicit illustrative phrases such as “for example” or “such as,” reflecting how often abstract claims are grounded in concrete instances. Well-calibrated example density improves interpretability and reader comprehension. Very low values often indicate declarative writing that assumes rather than demonstrates understanding.
+
+- **ĉi – normalised citation density**  
+  Reflects the presence of formal references, including citations, URLs, or DOIs, as a proportion of the text. This variable captures the extent to which claims are externally verifiable and evidence-backed. Low citation density frequently corresponds to opinion-driven or internally focused discourse.
+
+- **t̂tr – type–token ratio (lexical diversity proxy)**  
+  Represents the ratio of unique tokens to total tokens, serving as a measure of vocabulary variety and linguistic precision. Higher values suggest discriminating word choice and reduced repetition. Lower values often indicate reliance on generic phrasing or circular restatement.
+
+- **ĥ – hedge density**  
+  Measures the frequency of epistemic qualifiers such as “perhaps,” “possibly,” or “somewhat,” signalling uncertainty or qualification. Moderate levels may be appropriate in exploratory or academic contexts. Sustained high hedge density, however, weakens commitment and obscures substantive claims.
+
+- **b̂z – buzzword density**  
+  Quantifies the prevalence of fashionable or managerial jargon that carries rhetorical weight but limited operational meaning. Such terms can inflate perceived sophistication without adding informational value. Elevated buzzword density is a hallmark of performative or impression-management-oriented prose.
+
 
 ---
 
@@ -84,11 +96,17 @@ Focus measures coherence and logical progression:
 
 F = 0.50·ŝim − 0.25·r̂ed − 0.10·d̂rift + 0.15·p̂rog
 
+**ŝim – topic adherence**  
+  Measures semantic alignment between individual sentences and the central topic or reference prompt. High values indicate focused, on-topic discourse with limited diversion. Low values suggest thematic dilution or weak anchoring to the core argument.
 
-- `ŝim` - topic adherence  
-- `r̂ed` - redundancy  
-- `d̂rift` - off-topic wanderings  
-- `p̂rog` -  narrative progression  
+- **r̂ed – redundancy**  
+  Captures semantic repetition across sentences, indicating whether content advances or merely restates prior points. Excessive redundancy often reflects looping or circular argumentation. Moderate redundancy may be acceptable for emphasis, but high values typically signal inefficiency.
+
+- **d̂rift – off-topic wanderings**  
+  Quantifies the extent to which the text diverges semantically from its stated topic. High drift scores indicate scenic detours that weaken argumentative coherence. Controlled drift may occur in exploratory writing, but sustained drift erodes clarity and focus.
+
+- **p̂rog – narrative progression**  
+  Measures whether successive sentences introduce new information or advance the argument in a structured manner. High values reflect purposeful development and logical sequencing. Low values suggest stagnation or thematic stalling.
 
 Weighting was empirically adjusted to avoid collapsing Focus to near zero in legitimate exploratory writing. 
 
@@ -104,11 +122,21 @@ High values indicate clear verbs (“implement”, “decide”), measurable out
 
 **Where:**
 
-- `d̂ir` - directive density  
-- `ôut` - outcome density  
-- `d̂ec` - decision cue density  
-- `ŝtruct` - structural ratio  
-- `âmb` - ambiguity density :contentReference[oaicite:7]{index=7}
+ **d̂ir – directive density**  
+  Measures the frequency of imperative or action-oriented verbs such as “implement,” “prioritise,” or “measure.” High values indicate instructionally clear and execution-ready prose. Low values correspond to descriptive text with limited operational guidance.
+
+- **ôut – outcome density**  
+  Captures the prevalence of explicit deliverables, deadlines, KPIs, or measurable end states. This variable reflects the degree to which intentions are translated into observable results. Low outcome density is typical of aspirational or vision-led statements.
+
+- **d̂ec – decision cue density**  
+  Measures the presence of explicit commitments or choice statements, such as “we decide” or “we recommend.” High values signal decisional clarity and ownership. Low values indicate deferral, equivocation, or avoidance of commitment.
+
+- **ŝtruct – structural ratio**  
+  Represents the proportion of structured elements such as bullet points, numbered steps, or ordered lists. Higher values reflect organised, execution-friendly presentation. Very low values are associated with free-form prose lacking procedural clarity.
+
+- **âmb – ambiguity density**  
+  Quantifies the frequency of vague verbs and non-committal language that obscure responsibility or intent. High ambiguity density makes action translation difficult despite apparent positivity. Low ambiguity density corresponds to precise, accountable communication.
+
 
 ---
 
@@ -120,7 +148,7 @@ W = 1 − σ(0.5S + 0.3F + 0.2A − 0.5)
 σ(x) = 1 / (1 + e^(−x))
 
 
-This maps virtuous clarity to low scores (“Toast-Dry”) and syrupy circumlocution to high scores (“All-You-Can-Blather Buffet”). The resulting index is bounded, smooth, and interpretable. :contentReference[oaicite:8]{index=8}
+This maps virtuous clarity to low scores (“Toast-Dry”) and syrupy circumlocution to high scores (“All-You-Can-Blather Buffet”). The resulting index is bounded, smooth, and interpretable. 
 
 ---
 
