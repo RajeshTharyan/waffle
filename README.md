@@ -162,7 +162,7 @@ The Waffle Cube is both satire and tool. Used responsibly, it supports concise c
 
 ## 7. Conclusion
 
-The **Waffle Cube** merges humour with NLP precision to create a novel metric of rhetorical efficiency. It treats verbosity not as a vice but as a variable — measurable, improvable, and occasionally delicious. 
+The **Waffle Cube** merges humour with NLP precision to create a novel metric of rhetorical efficiency. It treats verbosity not as a vice but as a variable - measurable, improvable, and occasionally delicious. 
 
 ---
 
