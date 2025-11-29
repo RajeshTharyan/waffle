@@ -30,8 +30,7 @@ In essence, waffle is the observable residue of the human brain’s attempt to d
 
 ## 2. Related Work
 
-Traditional readability indices (Flesch, Gunning Fog) measure difficulty rather than density.  They cannot distinguish between “complex ideas clearly stated” and “simple ideas stretched beyond reason.” Recent NLP developments \href{https://arxiv.org/abs/1908.10084}{Reimers \& Gurevych (2019)} enable fine-grained semantic comparison using embeddings, 
-allowing us to estimate how \textit{on-topic} or \textit{repetitive} a text may be. Parallel work in requirements engineering (Briand et al., 2016) and text summarisation (\href{https://arxiv.org/abs/1904.09675}{Zhang et al., 2020}) provides inspiration for measuring focus, progression, and outcome orientation. 
+Traditional readability indices (Flesch, Gunning Fog) measure difficulty rather than density.  They cannot distinguish between “complex ideas clearly stated” and “simple ideas stretched beyond reason.” Recent NLP developments for example Gurevych (2019) enable fine-grained semantic comparison using embeddings, allowing us to estimate how \textit{on-topic} or \textit{repetitive} a text may be. Parallel work in requirements engineering (Briand et al., 2016) and text summarisation  provides inspiration for measuring focus, progression, and outcome orientation (Zhang et al., 2020). 
 
 ---
 
