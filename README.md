@@ -194,7 +194,7 @@ The **Waffle Cube** merges humour with NLP precision to create a novel metric of
 
 ## References
 
-1. Reimers, N., and Gurevych, I. (2019). *Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.* EMNLP-IJCNLP. https://arxiv.org/abs/1908.10084  
-2. Méndez Fernández, D. et al. (2016). *Naming the Pain in Requirements Engineering.* Information and Software Technology, 57, 616–643.  
-3. Zhang, T. et al. (2020). *BERTScore: Evaluating Text Generation with BERT.* ICLR 2020. https://arxiv.org/abs/1904.09675 
+1.Reimers, N. and Gurevych, I. (2019).Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.In Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP) and the 9th International Joint Conference on Natural Language Processing (IJCNLP), pp. 3982–3992. Association for Computational Linguistics. https://arxiv.org/abs/1908.10084  
+2. Méndez Fernández, D., Wagner, S., Kalinowski, M., Felderer, M., Mafra, P., Vetrò, A., Conte, T., Christiansson, M.-T., Greer, D., Lassenius, C., Männistö, T., Matulevičius, R., Penzenstadler, B., Rodrigues, G., Sillitti, A., and Briand, L. (2016).Naming the Pain in Requirements Engineering: A Design for a Global Family of Surveys and First Results from Germany.	Information and Software Technology, 57, 616–643.  
+3. Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., and Artzi, Y. (2020).BERTScore: Evaluating Text Generation with BERT. In International Conference on Learning Representations.ICLR. https://arxiv.org/abs/1904.09675 
 
