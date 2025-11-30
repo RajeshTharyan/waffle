@@ -16,7 +16,7 @@ This project introduces **The Waffle Cube**, an operationalised metric system fo
 
 The English language, glorious and over-caffeinated, has long suffered under the weight of unnecessary words. From committee minutes to annual reports, humans appear evolutionarily predisposed to add three more adjectives where one would do. *Waffle*, in this context, is not breakfast but behaviour: a caloric surplus of syntax, a syrupy excess of semi-relevant clauses.
 
-In academic circles, waffle manifests as the *hedge spiral*, wherein authors construct entire ecosystems of caveats before daring to state a claim. In corporate communications, it takes the form of *PowerPoint bloat*, in which bullet points reproduce asexually until the original insight has fled the slide deck in despair.
+In academic circles, waffle manifests as the *hedge spiral*, wherein authors construct entire ecosystems of caveats before daring to state a claim. In corporate communications, it takes the form of *PowerPoint bloat*, in which bullet points procreate inorganically without a grand design - or any design at all,  until the original insight has fled the slide deck in despair.
 
 Despite centuries of stylistic advice, no quantitative framework has managed to measure waffle scientifically. Until now.
 
