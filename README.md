@@ -1,5 +1,5 @@
 # 🧇 The Waffle Cube  
-## A Three-Dimensional Embeddings Framework for Quantifying Managerial Verbosity
+## A Three-Dimensional Embeddings Framework for Quantifying Verbosity
 
 **Authors:** Haku Rajesh, Rajesh Tharyan and Insight Companion  
 **Date:** November 27, 2025  
