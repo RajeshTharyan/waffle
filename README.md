@@ -67,7 +67,7 @@ The model rewards numbers, examples, citations, and lexical variety, while penal
 
 **Where:**
 
- **n̂ – normalised numeric and currency density**  
+- **n̂ – normalised numeric and currency density**  
   Captures the prevalence of quantitative expressions relative to total text length, indicating the degree of empirical or financial specificity. Higher values signal reliance on measurable evidence rather than qualitative description. Persistently low values are characteristic of narrative-heavy or impressionistic prose.
 
 - **êx – normalised example density**  
@@ -94,7 +94,7 @@ Focus measures coherence and logical progression:
 
 F = 0.50·ŝim − 0.25·r̂ed − 0.10·d̂rift + 0.15·p̂rog
 
-**ŝim – topic adherence**  
+- **ŝim – topic adherence**  
   Measures semantic alignment between individual sentences and the central topic or reference prompt. High values indicate focused, on-topic discourse with limited diversion. Low values suggest thematic dilution or weak anchoring to the core argument.
 
 - **r̂ed – redundancy**  
@@ -120,7 +120,7 @@ High values indicate clear verbs (“implement”, “decide”), measurable out
 
 **Where:**
 
- **d̂ir – directive density**  
+ - **d̂ir – directive density**  
   Measures the frequency of imperative or action-oriented verbs such as “implement,” “prioritise,” or “measure.” High values indicate instructionally clear and execution-ready prose. Low values correspond to descriptive text with limited operational guidance.
 
 - **ôut – outcome density**  
