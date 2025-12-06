@@ -3,7 +3,7 @@
 # Substance (S), Focus (F), and Actionability (A).
 # Primary method uses sentence embeddings (SentenceTransformer: all-MiniLM-L6-v2).
 # If embeddings package is unavailable, the app falls back to TF-IDF vectors.
-# Author: Haku Rajesh, Rajesh Tharyan, Insight Companion
+# Authors: Haku Rajesh, Rajesh Tharyan, Insight Companion
 # License: MIT
 
 import streamlit as st
