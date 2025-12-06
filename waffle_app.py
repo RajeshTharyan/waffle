@@ -1,10 +1,8 @@
 # waffle_app.py
 # Streamlit app: The Waffle Cube — measuring waffle across three axes:
-# Substance (S), Focus (F), and Actionability (A).
-#
+# Substance (S), Focus (F), and Actionability (A).
 # Primary method uses sentence embeddings (SentenceTransformer: all-MiniLM-L6-v2).
-# If embeddings package is unavailable, the app falls back to TF-IDF vectors.
-#
+# If embeddings package is unavailable, the app falls back to TF-IDF vectors.
 # Author: Haku Rajesh, Rajesh Tharyan, Insight Companion
 # License: MIT
 
