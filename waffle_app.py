@@ -5,7 +5,7 @@
 # Primary method uses sentence embeddings (SentenceTransformer: all-MiniLM-L6-v2).
 # If embeddings package is unavailable, the app falls back to TF-IDF vectors.
 #
-# Author: Insight Companion (Marketing Research & Competitive Analysis GPT)
+# Author: Haku Rajesh, Rajesh Tharyan, Insight Companion
 # License: MIT
 
 import streamlit as st
