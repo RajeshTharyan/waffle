@@ -3,7 +3,7 @@
   WORKDIR /app
   COPY . .
 
-  RUN pip install streamlit numpy scikit-learn sentence-transformers
+  RUN pip install -r requirements.txt
 
   EXPOSE 8501
 
