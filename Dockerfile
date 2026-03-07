@@ -5,6 +5,6 @@
 
   RUN pip install streamlit numpy scikit-learn sentence-transformers
 
-  EXPOSE 80
+  EXPOSE 8501
 
-  CMD ["streamlit", "run", "waffle_app.py", "--server.port=80", "--server.address=0.0.0.0"]
+  CMD ["streamlit", "run", "waffle_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
