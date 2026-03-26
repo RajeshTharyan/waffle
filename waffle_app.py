@@ -231,7 +231,7 @@ def compute_features(text: str, prompt: str = "") -> Dict[str, float]:
 
     # Waffle Score: higher = more waffle
     # Invert the "good" signals (S, F, A) using a sigmoid
-    waffle = 1.0 - (1.0 / (1.0 + math.exp(-6.0 * (0.5*S + 0.3*F + 0.2*A - 0.5))))
+    waffle = 1.0 - (1.0 / (1.0 + math.exp(-6.0 * (0.5*S + 0.3*F + 0.2*A - 0.4))))
 
     return dict(
         n_words=n_words, n_sents=n_sents,
