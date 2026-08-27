@@ -1,202 +1,170 @@
-# 🧇 The Waffle Cube  
-## A Three-Dimensional Embeddings Framework for Quantifying Verbosity
+# The Waffle Cube
 
-**Authors:** Haku Rajesh, Rajesh Tharyan and Insight Companion  
-**Date:** November 27, 2025  
+[![Tests](https://github.com/RajeshTharyan/waffle/actions/workflows/tests.yml/badge.svg)](https://github.com/RajeshTharyan/waffle/actions/workflows/tests.yml)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RajeshTharyan/waffle)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
+**A small Streamlit app that scores English prose for waffle** — hedging, buzzwords, topical drift, and missing decisions — along three axes: Substance, Focus, and Actionability.
 
-## Abstract
+There is **no hosted demo URL**. The repository is public so a visitor can read the code, run the tests, and (if they want) run a local or Codespaces copy of the UI.
 
-This project introduces **The Waffle Cube**, an operationalised metric system for quantifying verbosity, topical drift, and lack of decisional content in managerial or academic prose. The framework evaluates text along three interpretable dimensions: **Substance (S)**, **Focus (F)**, and **Actionability (A)**. Each dimension is derived from linguistically meaningful surface and semantic features, computed using sentence embeddings (MiniLM) or a TF-IDF fallback. A sigmoid-inverted composite index - the **Waffle Score** - represents overall communicative inefficiency. While presented humorously, the model provides serious analytic and pedagogical utility for writing instruction, clarity audits, and professional development. 
-
----
-
-## 1. Introduction
-
-The English language, glorious and over-caffeinated, has long suffered under the weight of unnecessary words. From committee minutes to annual reports, humans appear evolutionarily predisposed to add three more adjectives where one would do. *Waffle*, in this context, is not breakfast but behaviour: a caloric surplus of syntax, a syrupy excess of semi-relevant clauses.
-
-In academic circles, waffle manifests as the *hedge spiral*, wherein authors construct entire ecosystems of caveats before daring to state a claim. In corporate communications, it takes the form of *PowerPoint bloat*, in which bullet points procreate inorganically without a grand design - or any design at all,  until the original insight has fled the slide deck in despair.
-
-Despite centuries of stylistic advice, no quantitative framework has managed to measure waffle scientifically. Until now.
-
-This work therefore proposes a rigorously unserious but methodologically sound approach: to model waffle as a measurable artifact in three orthogonal dimensions: Substance, Focus, and Actionability and to compress this space into a single interpretable measure, the **Waffle Score**.
-
-Waffle is treated not as random noise but as a structured linguistic phenomenon, detectable through embeddings and lexical statistics. In the same way a spectrometer reveals the chemical composition of stars, the Waffle Cube reveals the informational composition of sentences. Beneath the surface of every overwrought paragraph lies a turbulent ecology of half-formed notions and speculative verbs desperately searching for an object. This is treated not merely as stylistic clutter but as evidence of the cognitive compost heap from which managerial language blooms. 
-
-In essence, waffle is the observable residue of the human brain’s attempt to disguise uncertainty as strategy - a form of *scrambled and coagulated mind matter*, rich in semantic calories but low in nutritional truth. By applying embedding models to this verbal soup, the framework aims to separate protein (meaning) from froth (presentation), yielding what is described as the first reproducible taxonomy of linguistic entropy. 
+Authors: Haku Rajesh, Rajesh Tharyan, and Insight Companion.
 
 ---
 
-## 2. Related Work
+## The problem
 
-Traditional readability indices (Flesch, Gunning Fog) measure difficulty rather than density.  They cannot distinguish between “complex ideas clearly stated” and “simple ideas stretched beyond reason.” Recent NLP developments for example Gurevych (2019) enable fine-grained semantic comparison using embeddings, allowing us to estimate how \textit{on-topic} or \textit{repetitive} a text may be. Parallel work in requirements engineering (Briand et al., 2016) and text summarisation  provides inspiration for measuring focus, progression, and outcome orientation (Zhang et al., 2020). 
+A lot of workplace writing is grammatically fine and still hard to act on: hedges instead of claims, slogans instead of numbers, repetition instead of a decision. Readability formulas (Flesch, Fog) measure *difficulty*, not *emptiness*.
 
----
+This project treats that emptiness as something you can approximate with boring, inspectable features:
 
-## 3. Methodology
+| Axis | Question the score is trying to answer |
+| --- | --- |
+| **Substance (S)** | Are there numbers, examples, citations, and specific vocabulary — or hedges and buzzwords? |
+| **Focus (F)** | Do sentences stay near a prompt (or the document centroid), or do they repeat / wander? |
+| **Actionability (A)** | Are there directives, decisions, dates/KPIs, and structure — or vague verbs? |
 
-### 3.1 Conceptual Model
-
-The Waffle Cube operationalises verbosity as the inverse of linguistic utility across three measurable axes:
-
-1. **Substance (S)** - Are we saying anything that could survive contact with a spreadsheet?  
-2. **Focus (F)** - Does the argument remain on-topic, or has it drifted into a scenic detour about “paradigm shifts”?  
-3. **Actionability (A)** - Could a rational person execute something based on this paragraph, or merely nod thoughtfully and forget?
-
-Each axis is normalised to the range [0, 1] based on empirical thresholds. The cube structure provides a geometric metaphor: an ideal text sits near (1, 1, 1) - dense, coherent, and executable - whereas pure waffle collapses toward the origin.
+Those three numbers are inverted through a sigmoid into a **Waffle Score** (higher = more waffle). The labels (*Blather Vapor*, *Gantt Gladiator*, …) are jokes sitting on top of the same thresholds. They are not a validated writing-quality instrument.
 
 ---
 
-### 3.2 Sentence Representation and Similarity
+## What a visitor should infer
 
-Sentence embeddings `e(s_i)` are computed using the *all-MiniLM-L6-v2* transformer model. If unavailable, a TF-IDF fallback creates a shared vocabulary space between the document and the user’s prompt `p`, ensuring comparable semantic geometry.
+This is a **skills-showcase repo**, not a research paper and not a product. If you only skim, this is the honest mapping:
 
-Cosine similarity between sentences and `p` estimates topical adherence, while inter-sentence similarities provide redundancy and progression indicators. High pairwise similarity implies repetition (looping waffle); low values suggest drift (aimless waffle).
-
----
-
-### 3.3 Substance (S)
-
-Substance quantifies evidential density and linguistic specificity:
-
-S = 0.30·n̂ + 0.15·êx + 0.15·ĉi + 0.20·t̂tr − 0.10·ĥ − 0.10·b̂z
-
-
-The model rewards numbers, examples, citations, and lexical variety, while penalising hedges (“perhaps”, “somewhat”) and buzzwords (“synergy”, “ecosystem”). A low Substance score corresponds to what editors call *word fog*.
-
-**Where:**
-
-- **n̂ – normalised numeric and currency density**  
-  Captures the prevalence of quantitative expressions relative to total text length, indicating the degree of empirical or financial specificity. Higher values signal reliance on measurable evidence rather than qualitative description. Persistently low values are characteristic of narrative-heavy or impressionistic prose.
-
-- **êx – normalised example density**  
-  Measures the frequency of explicit illustrative phrases such as “for example” or “such as,” reflecting how often abstract claims are grounded in concrete instances. Well-calibrated example density improves interpretability and reader comprehension. Very low values often indicate declarative writing that assumes rather than demonstrates understanding.
-
-- **ĉi – normalised citation density**  
-  Reflects the presence of formal references, including citations, URLs, or DOIs, as a proportion of the text. This variable captures the extent to which claims are externally verifiable and evidence-backed. Low citation density frequently corresponds to opinion-driven or internally focused discourse.
-
-- **t̂tr – type–token ratio (lexical diversity proxy)**  
-  Represents the ratio of unique tokens to total tokens, serving as a measure of vocabulary variety and linguistic precision. Higher values suggest discriminating word choice and reduced repetition. Lower values often indicate reliance on generic phrasing or circular restatement.
-
-- **ĥ – hedge density**  
-  Measures the frequency of epistemic qualifiers such as “perhaps,” “possibly,” or “somewhat,” signalling uncertainty or qualification. Moderate levels may be appropriate in exploratory or academic contexts. Sustained high hedge density, however, weakens commitment and obscures substantive claims.
-
-- **b̂z – buzzword density**  
-  Quantifies the prevalence of fashionable or managerial jargon that carries rhetorical weight but limited operational meaning. Such terms can inflate perceived sophistication without adding informational value. Elevated buzzword density is a hallmark of performative or impression-management-oriented prose.
-
+| If you look at… | You can reasonably infer… | You should **not** infer… |
+| --- | --- | --- |
+| `waffle/parsing.py`, `waffle/lexicons.py` | Comfort with regex, tokenisation, and lexicon-based feature extraction | Production NLP or multilingual linguistics |
+| `waffle/scoring.py` | Ability to turn mixed signals into bounded, weighted indices and document the formula | A fitted model, an evaluation set, or causal claims about “good writing” |
+| `waffle/embeddings.py` | Sentence-transformer use with a **real TF-IDF fallback** when the model cannot load | Custom embedding training or retrieval systems |
+| `waffle/plotting.py` + `waffle_app.py` | A thin UI over a library; Plotly for a 3D point in `(S, F, A)` | A design system, auth, or multi-page app architecture |
+| `tests/`, `.github/workflows/tests.yml` | The scoring path is testable without a browser, GPU, or Hugging Face download | High coverage of Streamlit, Docker, or the MiniLM path in CI |
+| `Dockerfile`, `.devcontainer/`, `captain-definition` | The same entry file (`waffle_app.py`) can run locally, in Codespaces, in Docker, or on CapRover | That a public instance is already deployed |
 
 ---
 
-### 3.4 Focus (F)
+## Architecture
 
-Focus measures coherence and logical progression:
+```mermaid
+flowchart LR
+  subgraph ui [Streamlit process]
+    App["waffle_app.py"]
+  end
+  subgraph lib [Importable package]
+    Parse[waffle.parsing]
+    Lex[waffle.lexicons]
+    Emb[waffle.embeddings]
+    Score[waffle.scoring]
+    Labels[waffle.labels]
+    Plot[waffle.plotting]
+  end
+  App --> Score
+  App --> Labels
+  App --> Plot
+  Score --> Parse
+  Score --> Lex
+  Score --> Emb
+  Emb -->|primary| MiniLM["all-MiniLM-L6-v2"]
+  Emb -->|fallback / tests| TFIDF["sklearn TfidfVectorizer"]
+```
 
-F = 0.50·ŝim − 0.25·r̂ed − 0.10·d̂rift + 0.15·p̂rog
+Design choices worth noticing:
 
-- **ŝim – topic adherence**  
-  Measures semantic alignment between individual sentences and the central topic or reference prompt. High values indicate focused, on-topic discourse with limited diversion. Low values suggest thematic dilution or weak anchoring to the core argument.
+- **UI is a client, not the product.** `waffle_app.py` wires widgets, `st.session_state` for tagline history, and Plotly. Scoring does not import Streamlit, so pytest can call it like a library.
+- **Primary embeddings, explicit fallback.** If `sentence-transformers` (or the MiniLM weights) cannot load, Focus still runs in a shared TF-IDF space. Tests set `WAFFLE_EMBEDDINGS=tfidf` so CI never downloads a model.
+- **Hand-weighted formulae, not a classifier.** Substance / Focus / Actionability are linear combinations of normalised densities, then clipped to `[0, 1]`. The waffle composite is `1 - σ(0.5S + 0.3F + 0.2A − 0.5)`. Weights were adjusted by inspection, not by training.
+- **Focus is geometric, not rhetorical.** Cosine similarity to the prompt (and to the document centroid), mean pairwise similarity (redundancy), share of low-similarity sentences (drift), and consecutive similarity deltas (progression). That is a useful proxy. It is not discourse parsing.
 
-- **r̂ed – redundancy**  
-  Captures semantic repetition across sentences, indicating whether content advances or merely restates prior points. Excessive redundancy often reflects looping or circular argumentation. Moderate redundancy may be acceptable for emphasis, but high values typically signal inefficiency.
+### Formulae (as implemented)
 
-- **d̂rift – off-topic wanderings**  
-  Quantifies the extent to which the text diverges semantically from its stated topic. High drift scores indicate scenic detours that weaken argumentative coherence. Controlled drift may occur in exploratory writing, but sustained drift erodes clarity and focus.
+**Substance**
 
-- **p̂rog – narrative progression**  
-  Measures whether successive sentences introduce new information or advance the argument in a structured manner. High values reflect purposeful development and logical sequencing. Low values suggest stagnation or thematic stalling.
+`S = 0.30·n̂ + 0.15·êx + 0.15·ĉi + 0.20·t̂tr − 0.10·ĥ − 0.10·bẑ`
 
-Weighting was empirically adjusted to avoid collapsing Focus to near zero in legitimate exploratory writing. 
+Numbers/currency, example cues, citation-like strings, type–token ratio; minus hedge and buzzword density.
 
----
+**Focus**
 
-### 3.5 Actionability (A)
+`F = 0.50·ŝim − 0.25·r̂ed − 0.10·d̂rift + 0.15·p̂rog`
 
-Actionability evaluates the practical “do-ness” of prose:
+**Actionability**
 
-A = 0.35·d̂ir + 0.25·ôut + 0.20·d̂ec + 0.10·ŝtruct − 0.10·âmb
+`A = 0.35·d̂ir + 0.25·ôut + 0.20·dêc + 0.10·ŝtruct − 0.10·âmb`
 
-High values indicate clear verbs (“implement”, “decide”), measurable outcomes (dates, KPIs, percentages), and structural cues (bullet lists). Low values indicate speculative, vibe-based text (“explore”, “enable”, “consider”).
-
-**Where:**
-
- - **d̂ir – directive density**  
-  Measures the frequency of imperative or action-oriented verbs such as “implement,” “prioritise,” or “measure.” High values indicate instructionally clear and execution-ready prose. Low values correspond to descriptive text with limited operational guidance.
-
-- **ôut – outcome density**  
-  Captures the prevalence of explicit deliverables, deadlines, KPIs, or measurable end states. This variable reflects the degree to which intentions are translated into observable results. Low outcome density is typical of aspirational or vision-led statements.
-
-- **d̂ec – decision cue density**  
-  Measures the presence of explicit commitments or choice statements, such as “we decide” or “we recommend.” High values signal decisional clarity and ownership. Low values indicate deferral, equivocation, or avoidance of commitment.
-
-- **ŝtruct – structural ratio**  
-  Represents the proportion of structured elements such as bullet points, numbered steps, or ordered lists. Higher values reflect organised, execution-friendly presentation. Very low values are associated with free-form prose lacking procedural clarity.
-
-- **âmb – ambiguity density**  
-  Quantifies the frequency of vague verbs and non-committal language that obscure responsibility or intent. High ambiguity density makes action translation difficult despite apparent positivity. Low ambiguity density corresponds to precise, accountable communication.
-
-
----
-
-### 3.6 Composite Waffle Score
-
-The Waffle Score inversely aggregates the three axes via a sigmoid transformation:
-
-W = 1 − σ(0.5S + 0.3F + 0.2A − 0.5)
-σ(x) = 1 / (1 + e^(−x))
-
-
-This maps virtuous clarity to low scores (“Toast-Dry”) and syrupy circumlocution to high scores (“All-You-Can-Blather Buffet”). The resulting index is bounded, smooth, and interpretable. 
+Each hat-variable is min–max normalised with hardcoded low/high cutoffs in `waffle/scoring.py`.
 
 ---
 
-## 4. Interpretation and Diagnostics
+## Using the app in the browser
 
-### 4.1 Categorical Mapping
+Once Streamlit is running (local, Docker, or Codespaces preview on port **8501**):
 
-Continuous values (S, F, A, W) are discretised into humorous linguistic bins. For example, `S < 0.2` becomes *Blather Vapor*, whereas `S > 0.8` earns *Laser-Fact Cannon*. Each dimension maps onto a rhetorical spectrum:
+1. Paste English prose, or upload a `.txt` / `.md` file (you can do both; they are concatenated).
+2. Optionally edit **Prompt / Question**. A tighter prompt usually changes the Focus similarity feature; it is not a Q&A model.
+3. Click **Analyse**. If the combined text is longer than 10 characters, analysis also runs on rerun without the click — that is existing behaviour, not a separate “live” mode.
+4. Read the four metrics, the two-sentence diagnostics, the raw feature JSON, and the 3D cube (one point at your `(S, F, A)`).
 
-- **Substance:** gaseous adjectives → weaponised data  
-- **Focus:** tangential sermons → missile-grade precision  
-- **Actionability:** “Plan? Vibes.” → “Gantt Gladiator.” 
-
----
-
-### 4.2 Diagnostic Text Generation
-
-Beyond numeric scores, the system produces short interpretive diagnostics. Each dimension yields a two-sentence analysis combining linguistic metrics with playful commentary.
-
-Examples include statements indicating low evidential density and high hedge rates, moderate topic alignment with high redundancy and drift, or low action cues dominated by vague verbs. While humorous, these diagnostics are grounded in linguistic evidence and serve as accessible feedback. Empirically, users report significant improvements in clarity motivated by avoiding unflattering diagnostic labels. 
+The caption shows the embeddings backend (`sentence-transformers` or `tfidf-fallback`). First MiniLM load can take a while and needs a download of the weights.
 
 ---
 
-## 5. Implementation and Visualisation
+## Run or deploy a copy
 
-The application is built in **Streamlit 1.37+**, using Sentence-BERT embeddings with TF-IDF fallback. It provides:
+**Local**
 
-- Interactive 3D visualisation of (S, F, A) via Plotly  
-- Randomised taglines to ensure novelty and engagement  
-- JSON feature diagnostics and a transparent metric pipeline 
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run waffle_app.py
+```
+
+**Tests** (no Streamlit, no torch):
+
+```bash
+pip install -r requirements-dev.txt
+WAFFLE_EMBEDDINGS=tfidf python -m pytest
+```
+
+**GitHub Codespaces** — this repo has a Dev Container. [Open in Codespaces](https://codespaces.new/RajeshTharyan/waffle); attach runs `streamlit run waffle_app.py` and forwards 8501.
+
+**Docker**
+
+```bash
+docker build -t waffle-cube .
+docker run --rm -p 8501:8501 waffle-cube
+```
+
+**CapRover** — `captain-definition` points at the same Dockerfile.
+
+**Streamlit Community Cloud** — create an app pointed at `waffle_app.py` on this repo. **No Community Cloud (or other) demo is published from this repository**; do not assume `*.streamlit.app` exists until someone deploys one.
 
 ---
 
-## 6. Applications and Ethics
+## Honest limits
 
-The Waffle Cube is both satire and tool. Used responsibly, it supports concise communication and evidence-driven writing. Used recklessly, it may undermine entire consulting industries. The model assumes English business discourse norms; calibration is advised for other rhetorical traditions. 
+- **Heuristic, English-centric, business-prose flavoured.** Lexicons are small word lists. Inflected forms (`exploring` vs `explore`) are often missed.
+- **Naive sentence splitting.** Split on `.?!` followed by a capital or digit. Abbreviations and lists will confuse it.
+- **No labelled waffle corpus.** There is no precision/recall story. “Concrete text scores higher on S and A than buzzword text” is the test, not a user study.
+- **MiniLM is off-the-shelf.** `all-MiniLM-L6-v2` is used as a generic sentence embedder. Nothing here is fine-tuned.
+- **TF-IDF fallback is weaker for Focus**, especially on short prompts that share little vocabulary with the document.
+- **Uploads stay in the Streamlit session** (UTF-8, errors ignored). The app does not fetch URLs it finds in the text. See [SECURITY.md](SECURITY.md).
+- **Not a writing tutor.** It will happily punish cautious academic hedging and reward bullet-pointed plans. That is a bias, not a philosophy.
 
 ---
 
-## 7. Conclusion
+## Layout
 
-The **Waffle Cube** merges humour with NLP precision to create a novel metric of rhetorical efficiency. It treats verbosity not as a vice but as a variable - measurable, improvable, and occasionally delicious. 
+```
+waffle_app.py          # Streamlit entry (keep this filename for Docker / Codespaces)
+waffle/                # importable scoring library
+  parsing.py           # sentences, tokens, densities
+  lexicons.py          # hedges, buzzwords, patterns, taglines
+  embeddings.py        # MiniLM or TF-IDF
+  scoring.py           # S, F, A, WaffleScore
+  labels.py            # bins, diagnostics, tagline rotation
+  plotting.py          # Plotly cube
+tests/                 # pytest, TF-IDF only
+```
 
----
-
-## References
-
-1. Reimers, N. and Gurevych, I. (2019).Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.In Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP) and the 9th International Joint Conference on Natural Language Processing (IJCNLP), pp. 3982–3992. Association for Computational Linguistics. https://arxiv.org/abs/1908.10084  
-
-2. Méndez Fernández, D., Wagner, S., Kalinowski, M., Felderer, M., Mafra, P., Vetrò, A., Conte, T., Christiansson, M.-T., Greer, D., Lassenius, C., Männistö, T., Matulevičius, R., Penzenstadler, B., Rodrigues, G., Sillitti, A., and Briand, L. (2016).Naming the Pain in Requirements Engineering: A Design for a Global Family of Surveys and First Results from Germany.	Information and Software Technology, 57, 616–643.
-   
-3. Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., and Artzi, Y. (2020).BERTScore: Evaluating Text Generation with BERT. In International Conference on Learning Representations.ICLR. https://arxiv.org/abs/1904.09675 
-
+License: [MIT](LICENSE). How to send a patch: [CONTRIBUTING.md](CONTRIBUTING.md).

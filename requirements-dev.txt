@@ -1,0 +1,7 @@
+# Development / CI dependencies. Does not pull sentence-transformers or torch;
+# tests force the TF-IDF backend (WAFFLE_EMBEDDINGS=tfidf).
+# For the Streamlit app itself, install requirements.txt.
+pytest>=8.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+plotly>=5.17.0
