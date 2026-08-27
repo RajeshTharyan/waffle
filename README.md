@@ -99,6 +99,8 @@ Each hat-variable is min–max normalised with hardcoded low/high cutoffs in `wa
 
 Once Streamlit is running (local, Docker, or Codespaces preview on port **8501**):
 
+The checked-in config uses Streamlit’s **dark** theme. Custom CSS is written for light text; a light theme hides the scores.
+
 1. Paste English prose, or upload a `.txt` / `.md` file (you can do both; they are concatenated).
 2. Optionally edit **Prompt / Question**. A tighter prompt usually changes the Focus similarity feature; it is not a Q&A model.
 3. Click **Analyse**. If the combined text is longer than 10 characters, analysis also runs on rerun without the click — that is existing behaviour, not a separate “live” mode.

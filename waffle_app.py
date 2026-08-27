@@ -132,7 +132,10 @@ if st.button("Analyse") or (text and len(text) > 10):
         with right_col:
             try:
                 fig = build_cube_figure(feats["S"], feats["F"], feats["A"])
-                st.plotly_chart(fig, use_container_width=True)
+                try:
+                    st.plotly_chart(fig, width="stretch")
+                except TypeError:
+                    st.plotly_chart(fig, use_container_width=True)
             except ImportError:
                 st.info("Install plotly for a 3D scatter: `pip install plotly`.")
 else:
