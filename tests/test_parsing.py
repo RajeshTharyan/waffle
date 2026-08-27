@@ -33,10 +33,11 @@ def test_word_tokens_lowercases_and_keeps_percent():
 
 def test_bullet_pattern():
     assert BULLET_PAT.match("- ship the API")
-    assert BULLET_PAT.match("1. assign an owner")
+    assert BULLET_PAT.match("1 assign an owner")
     assert BULLET_PAT.match("* measure weekly")
     assert BULLET_PAT.match("  •  decide")
     assert not BULLET_PAT.match("plain prose line")
+    assert not BULLET_PAT.match("1. period after the digit is not a bullet")
 
 
 def test_density_and_safe_div_stats():
